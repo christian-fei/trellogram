@@ -1,16 +1,52 @@
 #!/usr/bin/env node
 const trelloQuery = require('./trello-query')
 const chalk = require('chalk')
-const yargs = require('yargs')
+const argv = require('yargs')
+  .option('board-name', {
+    alias: 'b',
+    type: 'string',
+    description: 'trello board name (required)',
+    required: true
+  })
+  .option('since', {
+    alias: 's',
+    type: 'string',
+    description: 'filter cards since date (supports relative dates like today and yesterday)'
+  })
+  .option('until', {
+    alias: 'u',
+    type: 'string',
+    description: 'filter cards until date (supports relative dates like today and yesterday)'
+  })
+  .option('member', {
+    alias: 'm',
+    type: 'string',
+    description: 'filter cards by member username'
+  })
+  .option('key', {
+    alias: 'k',
+    type: 'string',
+    description: 'Trello API Key'
+  })
+  .option('token', {
+    alias: 't',
+    type: 'string',
+    description: 'Trello API Token'
+  })
+  .argv
 
-const key = process.env.npm_config_trello_api_key || process.env.TRELLO_API_KEY
-const token = process.env.npm_config_trello_api_token || process.env.TRELLO_API_TOKEN
-
-main(yargs.argv)
+main(argv)
   .then(() => process.exit(0))
   .catch(err => console.error(err) && process.exit(1))
 
-async function main ({ boardName = 'GTD', since, until, member } = {}) {
+async function main ({
+  key = process.env.npm_config_trello_api_key || process.env.TRELLO_API_KEY,
+  token = process.env.npm_config_trello_api_token || process.env.TRELLO_API_TOKEN,
+  boardName = 'GTD',
+  since,
+  until,
+  member
+} = {}) {
   console.log(chalk.black('getting trello information..'))
 
   const { board, cards, members, lists } = await trelloQuery({ key, token, boardName, since, until, member })
