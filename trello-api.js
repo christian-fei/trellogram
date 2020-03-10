@@ -25,14 +25,8 @@ async function getBoardMembers ({ key, token }, boardId) {
   return JSON.parse(body)
 }
 
-async function getBoardCards ({ key, token }, { boardId, since }) {
+async function getBoardCards ({ key, token }, boardId) {
   const url = `https://api.trello.com/1/boards/${boardId}/cards?key=${key}&token=${token}`
   const { body } = await got.get(url)
-  const cards = JSON.parse(body)
-  if (!since) return cards
-  return cards.filter(c => {
-    const dateLastActivity = new Date(c.dateLastActivity)
-    const filterSince = new Date(since)
-    return dateLastActivity > filterSince
-  })
+  return JSON.parse(body)
 }
