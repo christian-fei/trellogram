@@ -60,6 +60,7 @@ async function main ({ boardName = 'GTD', since, until, member } = {}) {
       if (!member) return c
       return (c.members || []).find(m => m.username === member)
     })
+    .sort((a, b) => a.list.name.localeCompare(b.list.name))
 
   console.log(todayCards.map(cardToString).join('\n'))
 }
@@ -67,7 +68,8 @@ function cardToString (c) {
   return [
     `${chalk.bold(c.name)}`,
     `\t${c.shortUrl}`,
-    `\t${chalk.italic(`last activity ${c.dateLastActivity}`)}`
+    `\t${chalk.italic(`last activity ${c.dateLastActivity}`)}`,
+    `\t${chalk.bgWhite.black(`${c.list.name}`)}`
   ].join('\n')
 }
 
