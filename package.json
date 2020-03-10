@@ -1,6 +1,6 @@
 {
   "name": "trellogram",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "trello board recap to your telegram",
   "main": "index.js",
   "bin": "bin.js",
