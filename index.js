@@ -60,7 +60,7 @@ async function main ({ boardName = 'GTD', since, until, member } = {}) {
       if (!member) return c
       return (c.members || []).find(m => m.username === member)
     })
-    .sort((a, b) => a.list.name.localeCompare(b.list.name))
+    .sort((a, b) => new Date(a.dateLastActivity) - new Date(b.dateLastActivity))
 
   console.log(todayCards.map(cardToString).join('\n'))
 }
