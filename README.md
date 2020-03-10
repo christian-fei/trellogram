@@ -2,8 +2,7 @@
 
 trello board recap to your telegram.
 
-for now it prints a recap in the terminal
-
+without `--telegram-token` and `--telegram-user-id` it prints a recap in the terminal
 ```bash
 
 npm i -g trellogram
@@ -64,3 +63,11 @@ filter cards after a certain date
 ### --until
 
 filter cards before a certain date
+
+### --telegram-token
+
+the telegram bot token
+
+### --telegram-chat-id
+
+the telegram chat id
