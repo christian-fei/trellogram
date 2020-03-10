@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-const trelloQuery = require('./trello-query')
+const trelloQuery = require('trello-query')
 const { sendMessageFor } = require('simple-telegram-message')
 const chalk = require('chalk')
 const ansiRegex = require('ansi-regex')
