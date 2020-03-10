@@ -2,8 +2,8 @@ const { serial: test } = require('ava')
 const trelloQuery = require('./trello-query')
 const nock = require('nock')
 
-const key = process.env.npm_config_trello_api_key || process.env.TRELLO_API_KEY
-const token = process.env.npm_config_trello_api_token || process.env.TRELLO_API_TOKEN
+const key = 'test' || process.env.npm_config_trello_api_key || process.env.TRELLO_API_KEY
+const token = 'test' || process.env.npm_config_trello_api_token || process.env.TRELLO_API_TOKEN
 
 const baseTrelloApiUrl = 'https://api.trello.com'
 const boardId = 1
