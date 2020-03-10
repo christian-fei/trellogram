@@ -2,6 +2,8 @@
 const trelloQuery = require('./trello-query')
 const { sendMessageFor } = require('simple-telegram-message')
 const chalk = require('chalk')
+const ansiRegex = require('ansi-regex')
+
 const argv = require('yargs')
   .option('board-name', {
     alias: 'b',
@@ -60,7 +62,6 @@ async function main ({
   until,
   member, ...rest
 } = {}) {
-  console.log(rest)
   console.log(chalk.black('getting trello information..'))
 
   const { board, cards, members, lists } = await trelloQuery({ key, token, boardName, since, until, member })
@@ -81,7 +82,7 @@ async function main ({
   console.log(output)
 
   if (telegramToken && telegramChatId) {
-    await sendMessageFor(telegramToken, +telegramChatId)(output)
+    await sendMessageFor(telegramToken, telegramChatId)(output.replace(ansiRegex(), ''))
       .catch(err => console.error('failed to send telegram message', err.message))
   }
 

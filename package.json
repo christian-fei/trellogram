@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "ansi-regex": "^5.0.0",
     "chalk": "^3.0.0",
     "got": "^10.6.0",
     "simple-telegram-message": "^1.4.1",
