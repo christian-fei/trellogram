@@ -3,7 +3,7 @@ const trelloApi = require('./trello-api')
 module.exports = async ({ key, token, boardName = 'GTD', since, until, member } = {}) => {
   const boards = await trelloApi.getBoards({ key, token })
   const board = boards.find(b => b.name.toLowerCase() === boardName.toLowerCase())
-  console.log('board', board)
+
   if (!board) {
     console.log(`"${boardName}" not found,available boards`, boards.map(b => b.name).join(', '))
     throw new Error('no such board')
