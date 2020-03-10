@@ -1,12 +1,10 @@
 const { serial: test } = require('ava')
-// const got = require('got')
 const { getBoards, getBoardLists, getBoardMembers, getBoardCards } = require('./trello-api')
 const nock = require('nock')
 
 const key = process.env.npm_config_trello_api_key || process.env.TRELLO_API_KEY
 const token = process.env.npm_config_trello_api_token || process.env.TRELLO_API_TOKEN
 
-test.before(Function.prototype)
 const baseTrelloApiUrl = 'https://api.trello.com'
 const boardId = 1
 
