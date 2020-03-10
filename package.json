@@ -1,11 +1,12 @@
 {
   "name": "trellogram",
   "version": "1.0.0",
-  "description": "",
+  "description": "trello board recap to your telegram",
   "main": "index.js",
+  "bin": "bin.js",
   "scripts": {
-    "playground": "node playground.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node $npm_package_main",
+    "test": "echo \"Error: no test specified\" && exit 0"
   },
   "keywords": [],
   "author": "",
