@@ -9,6 +9,7 @@ module.exports = async ({ key, token, boardName = 'GTD', since, until, member } 
     throw new Error('no such board')
   }
   console.log(`"${boardName}" found: loading members, lists and cards..`)
+
   const boardId = board.id
   let [lists, members, cards] = await Promise.all([
     trelloApi.getBoardLists({ key, token }, boardId),
