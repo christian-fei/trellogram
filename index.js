@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 const trelloQuery = require('./trello-query')
+const { sendMessageFor } = require('simple-telegram-message')
 const chalk = require('chalk')
 const argv = require('yargs')
   .option('board-name', {
@@ -33,6 +34,16 @@ const argv = require('yargs')
     type: 'string',
     description: 'Trello API Token'
   })
+  .option('telegram-token', {
+    alias: 'telegramToken',
+    type: 'string',
+    description: 'Telegram Bot Token'
+  })
+  .option('telegram-chat-id', {
+    alias: 'telegramChatId',
+    type: 'string',
+    description: 'Trello Chat ID'
+  })
   .argv
 
 main(argv)
@@ -42,11 +53,14 @@ main(argv)
 async function main ({
   key = process.env.npm_config_trello_api_key || process.env.TRELLO_API_KEY,
   token = process.env.npm_config_trello_api_token || process.env.TRELLO_API_TOKEN,
+  telegramToken = process.env.npm_config_telegram_token || process.env.TELEGRAM_TOKEN,
+  telegramChatId = process.env.npm_config_telegram_chat_id || process.env.TELEGRAM_CHAT_ID,
   boardName = 'GTD',
   since,
   until,
-  member
+  member, ...rest
 } = {}) {
+  console.log(rest)
   console.log(chalk.black('getting trello information..'))
 
   const { board, cards, members, lists } = await trelloQuery({ key, token, boardName, since, until, member })
@@ -65,6 +79,11 @@ async function main ({
 
   const output = cards.map(cardToString).join('\n')
   console.log(output)
+
+  if (telegramToken && telegramChatId) {
+    await sendMessageFor(telegramToken, +telegramChatId)(output)
+      .catch(err => console.error('failed to send telegram message', err.message))
+  }
 
   return { board, cards, members, lists, output }
 }
