@@ -4,6 +4,15 @@ trello board recap to your telegram.
 
 for now it prints a recap in the terminal
 
+```bash
+
+npm i -g trellogram
+
+# or
+
+npx trellogram ...
+```
+
 ## run
 
 ```bash
