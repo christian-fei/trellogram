@@ -17,7 +17,7 @@ npx trellogram ...
 ## run
 
 ```bash
-env TRELLO_API_KEY=XXX TRELLO_API_TOKEN=XXX npx trellogram --board-name "BOARD_NAME" --since yesterday --member MEMBER_NAME
+npx trellogram --board-name "BOARD_NAME" --since yesterday --member MEMBER_NAME --key TRELLO_API_KEY --token TRELLO_API_TOKEN
 ```
 
 ## output
