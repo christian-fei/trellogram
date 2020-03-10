@@ -36,7 +36,8 @@ function cardToString (c) {
   return [
     `${chalk.bold(c.name)}`,
     `\t${c.shortUrl}`,
-    `\t${chalk.italic(`last activity ${c.dateLastActivity}`)}`,
+    c.members.length > 0 && `\t${c.members.map(m => m.username).join(', ')}`,
+    `\t${chalk.italic(c.dateLastActivity)}`,
     `\t${chalk.bgWhite.black(`${c.list.name}`)}`
-  ].join('\n')
+  ].filter(Boolean).join('\n')
 }
