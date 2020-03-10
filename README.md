@@ -13,6 +13,8 @@ npm i -g trellogram
 npx trellogram ...
 ```
 
+![trellogram](.github/trellogram.png)
+
 ## run
 
 ```bash
