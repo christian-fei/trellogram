@@ -1,4 +1,4 @@
-const trelloApi = require('./trello-api')
+const trelloApi = require('simple-trello-api')
 
 module.exports = async ({ key, token, boardName = 'GTD', since, until, member } = {}) => {
   const boards = await trelloApi.getBoards({ key, token })
