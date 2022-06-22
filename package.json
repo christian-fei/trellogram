@@ -14,7 +14,7 @@
   "dependencies": {
     "ansi-regex": "^5.0.0",
     "chalk": "^3.0.0",
-    "got": "^10.6.0",
+    "got": "^11.8.5",
     "simple-telegram-message": "^1.4.1",
     "simple-trello-api": "^1.0.1",
     "trello-query": "^1.0.1",
